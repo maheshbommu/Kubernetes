@@ -1,0 +1,15 @@
+# Create a Pod with two containers
+---
+apiVersion: v1
+kind: pod
+metadata:
+  name: dev
+spec:
+  containers:
+    - name: dev-1
+      image: nginx:1.27
+    - name: dev-2
+      image: alpine
+      args: # cmd
+        - sleep
+        - 1d

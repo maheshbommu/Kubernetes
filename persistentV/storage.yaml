@@ -1,0 +1,12 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-sg
+spec:
+  provisionear: my-frist-file
+  parameters:
+    - type : stogag
+      replaction: 3
+  reclaimPolicy: delete
+  volumeBindingMode: immidate

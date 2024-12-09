@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: persistentVolumeClaim
+metadata:
+  name: mangodb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: persistentVolume
+metadata:
+  name: mangonodb-pv
+spec:
+  capacity:
+    storage: 5Gi
+  hostPoth: 
+    path: /var/lib/postgresql/data
+  accessModes:
+    - ReadWriteOnce
+---
+apiversion: apps/v1
+kind: deployment
+metadata:
+  name: db-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev
+  template:
+    metadata:
+      labels:
+        app: dev
+    spec:
+      containers:
+        - name: db-dev
+          image: mango:latest
+          ports:
+            - containerport: 27520
+          volumeMounts:
+            - name: db-dev
+              mountPath:
+              

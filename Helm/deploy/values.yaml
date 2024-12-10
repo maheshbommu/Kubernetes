@@ -1,0 +1,18 @@
+---
+namespace: images
+replicas: 2
+seconds: 1
+matchLabels: 
+  app: dev
+labels:
+  app: dev
+image: maheshbommu/goal
+imagetag: 1
+containerport: 3000
+servicetype: ClusterIP 
+serviceport: 3000
+
+
+
+
+

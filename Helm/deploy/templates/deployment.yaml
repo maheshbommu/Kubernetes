@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-mahesh
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: {{.Values.replicas}}
+  minReadySeconds: {{.Values.seconds}}
+  selector:
+    matchLabels: {{.Values.matchLabels | toYaml | nindent 6}}
+  template:
+    metadata:
+      labels: {{.Values.labels | toYaml | nindent 8}}
+    spec:
+      containers:
+        - name: {{.Release.Name}}-image-name
+          image: {{.Values.image}}:{{.Values.imagetag}}
+          ports:
+            - containerPort: {{.Values.containerport}}
